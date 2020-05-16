@@ -80,9 +80,11 @@ post '/new' do
     return erb :new
   end
 
-  # save data to database ###
+  # Save data to database ###
 
   #@db.execute 'insert into Posts (content, created_date) values (?, datetime())', [content]
 
-  erb "You tiped #{content}"
+  # Redirect to '/'
+
+  redirect to '/'
 end
