@@ -8,6 +8,16 @@
 </p>
 <h4>Comments</h4>
 
+<% @comments.each do |comment| %>
+  <p>
+    <%= comment['content'] %>
+  </p>
+  <small class="text-muted">
+    Added at: <%= comment['created_date'] %>
+  </small>
+  <hr>
+<% end %>
+
 <form action="/details/@row['id']" method="POST">
   <div class="form-group">
     <label class="text-muted"></label>
