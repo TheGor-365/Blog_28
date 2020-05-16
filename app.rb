@@ -22,7 +22,7 @@ before '/secure/*' do
 end
 
 get '/' do
-  erb 'Can you handle a <a href="/secure/place">secret</a>?'
+  erb :index
 end
 
 get '/login/form' do
@@ -44,7 +44,7 @@ get '/secure/place' do
   erb 'This is a secret place that only <%=session[:identity]%> has access to!'
 end
 
-# My code
+# My code ###
 
 # def init_db
 #   @db = SQlite3::Database.new 'leprosorium.sqlite'
@@ -75,6 +75,8 @@ post '/new' do
     @error = "Input post text"
     return erb :new
   end
+
+  # save data to database ###
 
   #@db.execute 'insert into Posts (content, created_date) values (?, datetime())', [content]
 
