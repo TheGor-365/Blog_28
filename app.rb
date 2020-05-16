@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
+#require 'sqlite3'
 
 configure do
   enable :sessions
@@ -45,13 +46,21 @@ end
 
 # My code
 
+# def init_db
+#   @db = SQlite3::Database.new 'leprosorium.sqlite'
+#   @db.drsults_as_hash = true
+# end
+
+# before do
+#   @init_db
+# end
+
 get '/new' do
   erb :new
 end
 
 post '/new' do
   content = params[:content]
-
 
   "You tiped #{content}"
 end
