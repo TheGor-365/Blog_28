@@ -71,5 +71,10 @@ end
 post '/new' do
   content = params[:content]
 
+  if content.length == 0
+    @error = "Input post text"
+    return erb :new
+  end
+
   "You tiped #{content}"
 end
