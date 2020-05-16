@@ -48,11 +48,20 @@ end
 
 # def init_db
 #   @db = SQlite3::Database.new 'leprosorium.sqlite'
-#   @db.drsults_as_hash = true
+#   @db.results_as_hash = true
 # end
 
 # before do
 #   @init_db
+# end
+
+# configure do
+#   init_db
+#   @db.execute 'CREATE TABLE if not exists Posts (
+#   id INTEGER PRIMARY KEY AUTOINCREMENT,
+#   created_date DATE,
+#   content TEXT
+#   );'
 # end
 
 get '/new' do
