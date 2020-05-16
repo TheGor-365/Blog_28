@@ -42,3 +42,9 @@ end
 get '/secure/place' do
   erb 'This is a secret place that only <%=session[:identity]%> has access to!'
 end
+
+# My code
+
+get '/new' do
+  erb "Hello World"
+end
