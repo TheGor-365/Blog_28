@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
-#require 'sqlite3'
+require 'sqlite3'
 
 configure do
   enable :sessions
@@ -24,7 +24,7 @@ end
 get '/' do
   # Posts list from database ###
 
-  # @results = @db.execute 'SELECT * FROM Posts ORDER BY id DESC'
+  @results = @db.execute 'SELECT * FROM Posts ORDER BY id DESC'
 
   erb :index
 end
@@ -50,23 +50,23 @@ end
 
 # My code ###
 
-# def init_db
-#   @db = SQlite3::Database.new 'leprosorium.sqlite'
-#   @db.results_as_hash = true
-# end
+def init_db
+  @db = SQlite3::Database.new 'leprosorium.sqlite'
+  @db.results_as_hash = true
+end
 
-# before do
-#   @init_db
-# end
+before do
+  @init_db
+end
 
-# configure do
-#   init_db
-#   @db.execute 'CREATE TABLE if not exists Posts (
-#   id INTEGER PRIMARY KEY AUTOINCREMENT,
-#   created_date DATE,
-#   content TEXT
-#   );'
-# end
+configure do
+  init_db
+  @db.execute 'CREATE TABLE if not exists Posts (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  created_date DATE,
+  content TEXT
+  );'
+end
 
 get '/new' do
   erb :new
@@ -82,9 +82,15 @@ post '/new' do
 
   # Save data to database ###
 
-  #@db.execute 'insert into Posts (content, created_date) values (?, datetime())', [content]
+  @db.execute 'insert into Posts (content, created_date) values (?, datetime())', [content]
 
-  # Redirect to '/'
+  # Redirect to '/' ###
 
   redirect to '/'
+end
+
+# View info about post ###
+
+get '/details/:post_id' do
+  post_id = params[:post_id]
 end
