@@ -22,6 +22,10 @@ before '/secure/*' do
 end
 
 get '/' do
+  # Posts list from database ###
+
+  # @results = @db.execute 'SELECT * FROM Posts ORDER BY id DESC'
+
   erb :index
 end
 
